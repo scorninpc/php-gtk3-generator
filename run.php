@@ -4,7 +4,7 @@
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", dirname(__FILE__) . "/src");
 
 // Define output CPP source path
-defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", APPLICATION_PATH . "/../../src");
+defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", "/home/scorninpc/Desktop/Bruno/php-gtk3-tests/src");
 
 /**
  *
@@ -362,5 +362,9 @@ class Parse
 
 
 
+$file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
+if(!file_exists($file)) {
+	die("Def " . $argv[1] . " not found");
+}
 
-$notebook = new Parse(APPLICATION_PATH . "/../defs/GtkIconSize.php");
+$notebook = new Parse($file);
