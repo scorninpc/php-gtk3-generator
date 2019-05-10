@@ -225,7 +225,12 @@ class Parse
 			foreach($method_config['parameters'] as $index => $parameter_definitions) {
 				$parameter_string = "";
 
-				if(substr($parameter_definitions['type'], 0, 3) == "Gtk") {
+				if($parameter_definitions['return']) {
+
+					$parameter_string = "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . ";\n\n";
+
+				}
+				else if(substr($parameter_definitions['type'], 0, 3) == "Gtk") {
 
 
 					$parameter_string .= "\t" . $parameter_definitions['type'] . " *" . $parameter_definitions['name'] . ";\n";
@@ -238,7 +243,11 @@ class Parse
 							$parameter_string .= "\t\t" . $parameter_definitions['name'] . " = phpgtk_" . $parameter_definitions['name'] . "->get_instance();\n";
 						}
 						else {
-							$parameter_string .= "\t\t" . $parameter_definitions['name'] . " = GTK_WIDGET(phpgtk_" . $parameter_definitions['name'] . "->get_instance());\n";
+							if(!isset($parameter_definitions['cast_macro'])) {
+								$parameter_definitions['cast_macro'] = "GTK_WIDGET";
+							}
+							
+							$parameter_string .= "\t\t" . $parameter_definitions['name'] . " = " . $parameter_definitions['cast_macro'] . "(phpgtk_" . $parameter_definitions['name'] . "->get_instance());\n";
 						}
 					$parameter_string .= "\t}\n";
 
@@ -294,7 +303,14 @@ class Parse
 			$method .= substr($method_config['return-type'], 5) . " ret = ";
 		}
 		else if($method_config['return-type'] != NULL) {
-			$method .= $method_config['return-type'] . " ret = ";
+			$method .= $method_config['return-type'] . " ret";
+
+			if(!$method_config['ignore-cpp-return']) {
+				$method .= " = ";
+			}
+			else {
+				$method .= ";\n\n\t";
+			}
 		}
 
 
@@ -323,7 +339,11 @@ class Parse
 					$method .= (($param_count > 0) ? ", " : "") . "NULL";
 				}
 				else {
-					$method .= (($param_count > 0) ? ", " : "") . $parameter_definitions['name'];
+					$method .= (($param_count > 0) ? ", " : "") . (($parameter_definitions['return']) ? "&" : "") . $parameter_definitions['name'];
+
+					if($parameter_definitions['return']) {
+						$return_cast = "ret = " . $parameter_definitions['name'] . ";";
+					}
 				}
 
 				$param_count++;
@@ -333,6 +353,10 @@ class Parse
 		// End call gtk+ method
 		$method .= ");\n\n";
 
+
+		if(strlen($return_cast) > 0) {
+			$method .= "\t" . $return_cast . "\n\n";
+		}
 
 		// ---------------
 		// Return value
