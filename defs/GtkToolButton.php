@@ -23,10 +23,6 @@
 				'return-type' => NULL,
 				'parameters' => [
 					[
-						'type' => "GtkWidget",
-						'name' => "icon_widget",
-					],
-					[
 						'type' => "gchar *",
 						'name' => "label",
 					]
