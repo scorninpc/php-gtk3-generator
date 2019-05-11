@@ -138,11 +138,11 @@
 			// 	'parameters' =>NULL
 			// ],
 
-			// 'get_marks' => [
-			// 	'cpp-method' => "gtk_text_iter_get_marks",
-			// 	'return-type' => "GSList",
-			// 	'parameters' =>NULL
-			// ],
+			'get_marks' => [
+				'cpp-method' => "gtk_text_iter_get_marks",
+				'return-type' => "GSList",
+				'parameters' =>NULL
+			],
 
 			'get_toggled_tags' => [
 				'cpp-method' => "gtk_text_iter_get_toggled_tags",
@@ -166,55 +166,55 @@
 			// 	]
 			// ],
 
-			// 'starts_tag' => [
-			// 	'cpp-method' => "gtk_text_iter_starts_tag",
-			// 	'return-type' => "gboolean",
-			// 	'parameters' => [
-			// 		[
-			// 			'type' => "GtkTextTag",
-			// 			'name' => "tag"
-			// 		]
-			// 	]
-			// ],
+			'starts_tag' => [
+				'cpp-method' => "gtk_text_iter_starts_tag",
+				'return-type' => "gboolean",
+				'parameters' => [
+					[
+						'type' => "GtkTextTag",
+						'name' => "tag"
+					]
+				]
+			],
 
-			// 'ends_tag' => [
-			// 	'cpp-method' => "gtk_text_iter_ends_tag",
-			// 	'return-type' => "gboolean",
-			// 	'parameters' => [
-			// 		[
-			// 			'type' => "GtkTextTag",
-			// 			'name' => "tag"
-			// 		]
-			// 	]
-			// ],
+			'ends_tag' => [
+				'cpp-method' => "gtk_text_iter_ends_tag",
+				'return-type' => "gboolean",
+				'parameters' => [
+					[
+						'type' => "GtkTextTag",
+						'name' => "tag"
+					]
+				]
+			],
 
-			// 'toggles_tag' => [
-			// 	'cpp-method' => "gtk_text_iter_toggles_tag",
-			// 	'return-type' => "gboolean",
-			// 	'parameters' => [
-			// 		[
-			// 			'type' => "GtkTextTag",
-			// 			'name' => "tag"
-			// 		]
-			// 	]
-			// ],
+			'toggles_tag' => [
+				'cpp-method' => "gtk_text_iter_toggles_tag",
+				'return-type' => "gboolean",
+				'parameters' => [
+					[
+						'type' => "GtkTextTag",
+						'name' => "tag"
+					]
+				]
+			],
 
-			// 'has_tag' => [
-			// 	'cpp-method' => "gtk_text_iter_has_tag",
-			// 	'return-type' => "gboolean",
-			// 	'parameters' => [
-			// 		[
-			// 			'type' => "GtkTextTag",
-			// 			'name' => "tag"
-			// 		]
-			// 	]
-			// ],
+			'has_tag' => [
+				'cpp-method' => "gtk_text_iter_has_tag",
+				'return-type' => "gboolean",
+				'parameters' => [
+					[
+						'type' => "GtkTextTag",
+						'name' => "tag"
+					]
+				]
+			],
 
-			// 'get_tags' => [
-			// 	'cpp-method' => "gtk_text_iter_get_tags",
-			// 	'return-type' => "GSList",
-			// 	'parameters' => NULL
-			// ],
+			'get_tags' => [
+				'cpp-method' => "gtk_text_iter_get_tags",
+				'return-type' => "GSList",
+				'parameters' => NULL
+			],
 
 			'editable' => [
 				'cpp-method' => "gtk_text_iter_editable",
