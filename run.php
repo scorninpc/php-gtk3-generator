@@ -225,12 +225,12 @@ class Parse
 			foreach($method_config['parameters'] as $index => $parameter_definitions) {
 				$parameter_string = "";
 
-				if($parameter_definitions['return']) {
+				if(@$parameter_definitions['return']) {
 
 					$parameter_string = "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . ";\n\n";
 
 				}
-				else if(substr($parameter_definitions['type'], 0, 3) == "Gtk") {
+				else if((substr($parameter_definitions['type'], 0, 3) == "Gtk") ||  (substr($parameter_definitions['type'], 0, 3) == "Gdk")) {
 
 
 					$parameter_string .= "\t" . $parameter_definitions['type'] . " *" . $parameter_definitions['name'] . ";\n";
@@ -239,7 +239,7 @@ class Parse
 						// $parameter_string .= "\tif (!object_" . $parameter_definitions['name'] . ".instanceOf(\"" . $parameter_definitions['type'] . "\")) throw Php::Exception(\"parameter expect " . $parameter_definitions['type'] . " instance\");\n";
 						$parameter_string .= "\t\t" . $parameter_definitions['type'] . "_ *phpgtk_" . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . "_ *)object_" . $parameter_definitions['name'] . ".implementation();\n";
 						
-						if($parameter_definitions['nocast_macro']) {
+						if(@$parameter_definitions['nocast_macro']) {
 							$parameter_string .= "\t\t" . $parameter_definitions['name'] . " = phpgtk_" . $parameter_definitions['name'] . "->get_instance();\n";
 						}
 						else {
@@ -305,7 +305,7 @@ class Parse
 		else if($method_config['return-type'] != NULL) {
 			$method .= $method_config['return-type'] . " ret";
 
-			if(!$method_config['ignore-cpp-return']) {
+			if(!@$method_config['ignore-cpp-return']) {
 				$method .= " = ";
 			}
 			else {
@@ -329,6 +329,7 @@ class Parse
 		}
 
 		// Loop parameters
+		$return_cast = "";
 		if($method_config['parameters'] != NULL) {
 
 			// Cast the parameters
@@ -339,9 +340,9 @@ class Parse
 					$method .= (($param_count > 0) ? ", " : "") . "NULL";
 				}
 				else {
-					$method .= (($param_count > 0) ? ", " : "") . (($parameter_definitions['return']) ? "&" : "") . $parameter_definitions['name'];
+					$method .= (($param_count > 0) ? ", " : "") . ((@$parameter_definitions['return']) ? "&" : "") . $parameter_definitions['name'];
 
-					if($parameter_definitions['return']) {
+					if(@$parameter_definitions['return']) {
 						$return_cast = "ret = " . $parameter_definitions['name'] . ";";
 					}
 				}
