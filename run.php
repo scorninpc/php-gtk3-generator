@@ -68,6 +68,10 @@ class Parse
 
 			$methods[$method_name] = "            ";
 
+			// Static
+			if($config['static'] === TRUE)
+				$methods[$method_name] .= "static ";
+
 			// Return
 			if($config['return-type'] != NULL)
 				$methods[$method_name] .= "Php::Value ";
@@ -323,7 +327,7 @@ class Parse
 		
 		$method .= $method_config['cpp-method'] . " (";
 
-		if($method_name != "__construct") {
+		if( ($method_config['static'] !== TRUE) && ($method_name != "__construct") ) {
 			$method .= $definitions['configs']['cast_macro'] . "(instance)";
 			$param_count++;
 		}
