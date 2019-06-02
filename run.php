@@ -4,7 +4,7 @@
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", dirname(__FILE__) . "/src");
 
 // Define output CPP source path
-defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", "/home/scorninpc/Desktop/Bruno/php-gtk3-tests/src");
+defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", "/home/scorninpc/Desktop/Bruno/BUILD_PHP_GTK/php-gtk3/src");
 
 /**
  *
@@ -259,6 +259,11 @@ class Parse
 					// $parameter_string .= "\t" . $parameter_definitions['type'] . "_ *" . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . "_ *)object_" . $parameter_definitions['name'] . ".implementation();\n";
 
 				}
+				else if($parameter_definitions['type'] == "guint") {
+
+					$parameter_string .= "\tguint " . $parameter_definitions['name'] . " = (int)parameters[" . $index . "];\n";
+
+				}
 				else if(substr($parameter_definitions['type'], 0, 5) == "gchar") {
 
 
@@ -302,6 +307,9 @@ class Parse
 		}
 		else if(substr($method_config['return-type'], 0, 5) == "gchar") {
 			$method .= "std::string ret = ";
+		}
+		else if(substr($method_config['return-type'], 0, 5) == "guint") {
+			$method .= "int ret = ";
 		}
 		else if(substr($method_config['return-type'], 0, 4) == "enum") {
 			$method .= substr($method_config['return-type'], 5) . " ret = ";
