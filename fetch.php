@@ -3,8 +3,6 @@
 // Define absolute path
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", dirname(__FILE__));
 
-require APPLICATION_PATH . "/libs/simplehtmldom/simple_html_dom.php";
-
 /**
  *
  */
@@ -156,9 +154,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkAspectFrame";
-$start_with = "gtk_aspect_frame_";
-$extends = "GtkFrame";
-$macro = "GTK_ASPECT_FRAME";
+$widget = "GtkImage";
+$start_with = "gtk_image_";
+$extends = "GtkMisc";
+$macro = "GTK_IMAGE";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
