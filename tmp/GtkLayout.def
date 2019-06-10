@@ -1,0 +1,21 @@
+
+GtkWidget * gtk_layout_new (GtkAdjustment *hadjustment, GtkAdjustment *vadjustment);
+
+void gtk_layout_put (GtkLayout *layout, GtkWidget *child_widget, gint x, gint y);
+
+void gtk_layout_move (GtkLayout *layout, GtkWidget *child_widget, gint x, gint y);
+
+void gtk_layout_set_size (GtkLayout *layout, guint width, guint height);
+
+void gtk_layout_get_size (GtkLayout *layout, guint *width, guint *height);
+
+GtkAdjustment * gtk_layout_get_hadjustment (GtkLayout *layout);
+
+GtkAdjustment * gtk_layout_get_vadjustment (GtkLayout *layout);
+
+void gtk_layout_set_hadjustment (GtkLayout *layout, GtkAdjustment *adjustment);
+
+void gtk_layout_set_vadjustment (GtkLayout *layout, GtkAdjustment *adjustment);
+
+GdkWindow * gtk_layout_get_bin_window (GtkLayout *layout);
+

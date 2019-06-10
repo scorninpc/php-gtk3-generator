@@ -1,0 +1,31 @@
+
+GtkWidget * gtk_header_bar_new (void);
+
+void gtk_header_bar_set_title (GtkHeaderBar *bar, gchar *title);
+
+gchar * gtk_header_bar_get_title (GtkHeaderBar *bar);
+
+void gtk_header_bar_set_subtitle (GtkHeaderBar *bar, gchar *subtitle);
+
+gchar * gtk_header_bar_get_subtitle (GtkHeaderBar *bar);
+
+void gtk_header_bar_set_has_subtitle (GtkHeaderBar *bar, gboolean setting);
+
+gboolean gtk_header_bar_get_has_subtitle (GtkHeaderBar *bar);
+
+void gtk_header_bar_set_custom_title (GtkHeaderBar *bar, GtkWidget *title_widget);
+
+GtkWidget * gtk_header_bar_get_custom_title (GtkHeaderBar *bar);
+
+void gtk_header_bar_pack_start (GtkHeaderBar *bar, GtkWidget *child);
+
+void gtk_header_bar_pack_end (GtkHeaderBar *bar, GtkWidget *child);
+
+void gtk_header_bar_set_show_close_button (GtkHeaderBar *bar, gboolean setting);
+
+gboolean gtk_header_bar_get_show_close_button (GtkHeaderBar *bar);
+
+void gtk_header_bar_set_decoration_layout (GtkHeaderBar *bar, gchar *layout);
+
+gchar * gtk_header_bar_get_decoration_layout (GtkHeaderBar *bar);
+

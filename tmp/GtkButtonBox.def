@@ -1,0 +1,15 @@
+
+GtkWidget * gtk_button_box_new (GtkOrientation orientation);
+
+GtkButtonBoxStyle gtk_button_box_get_layout (GtkButtonBox *widget);
+
+gboolean gtk_button_box_get_child_secondary (GtkButtonBox *widget, GtkWidget *child);
+
+gboolean gtk_button_box_get_child_non_homogeneous (GtkButtonBox *widget, GtkWidget *child);
+
+void gtk_button_box_set_layout (GtkButtonBox *widget, GtkButtonBoxStyle layout_style);
+
+void gtk_button_box_set_child_secondary (GtkButtonBox *widget, GtkWidget *child, gboolean is_secondary);
+
+void gtk_button_box_set_child_non_homogeneous (GtkButtonBox *widget, GtkWidget *child, gboolean non_homogeneous);
+

@@ -1,0 +1,11 @@
+
+GtkWidget * gtk_action_bar_new (void);
+
+void gtk_action_bar_pack_start (GtkActionBar *action_bar, GtkWidget *child);
+
+void gtk_action_bar_pack_end (GtkActionBar *action_bar, GtkWidget *child);
+
+GtkWidget * gtk_action_bar_get_center_widget (GtkActionBar *action_bar);
+
+void gtk_action_bar_set_center_widget (GtkActionBar *action_bar, GtkWidget *center_widget);
+

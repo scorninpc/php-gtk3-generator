@@ -3,6 +3,8 @@
 // Define absolute path
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", dirname(__FILE__));
 
+require APPLICATION_PATH . "/libs/simplehtmldom/simple_html_dom.php";
+
 /**
  *
  */
@@ -13,10 +15,57 @@ class Fetch
 	 */
 	public function __construct($widget, $start_with, $extends, $macro)
 	{
+		// ----
 		$filename = APPLICATION_PATH . "/tmp/" . $widget . ".def";
 		if(!file_exists($filename)) {
+
+			// ----
+			$def_content = "\n";
+
+			// ----
 			$url = "https://developer.gnome.org/gtk3/3.20/" . $widget . ".html";
-			$content = file_get_contents($url);
+			$html = file_get_contents($url);
+
+			// ----
+			$dom = new DOMDocument();
+			$dom->loadHTML($html);
+			$finder = new DomXPath($dom);
+
+			// ----
+			$classname = $widget . ".functions_details";
+			$elements = $finder->query("//*[contains(concat(' ', normalize-space(@name), ' '), ' $classname ')]");
+
+			// ----
+			$elements = $elements->item(0)->parentNode->childNodes;
+
+			// ----
+			for($i=0; $i<=$elements->length; $i++) {
+
+				// ----
+				$element = $elements->item($i);
+				if(!$element) continue;
+
+				// ----
+				if(get_class($element) == "DOMElement") {
+
+					// ----
+					if($element->getAttribute("class") == "refsect2") {
+
+						// ----
+						$t = str_replace("\t", " ", $element->childNodes->item(4)->textContent);
+						$t = str_replace(" ", " ", $t); // Note this isn't space
+						$t = str_replace("\r", "", $t);
+						$t = str_replace("\n", " ", $t);
+						$t = str_replace("const ", "", $t);
+						$t = preg_replace('/\s+/', ' ', $t);
+
+						$def_content .= $t . "\n\n";
+					}
+				}
+
+			}
+
+			file_put_contents($filename, $def_content);
 		}
 
 		// 
@@ -28,11 +77,12 @@ class Fetch
 		// 
 		$methods_out = [];
 		for($i=0; $i<$count; $i++) {
+			$func_name = str_replace("* ", "", $output[2][$i]);
 
 			//
 			$out = [];
-			$out[] = "			'" . str_replace($start_with, "", $output[2][$i]) . "' => [";
-			$out[] = "				'cpp-method' => \"" . $output[2][$i] . "\",";
+			$out[] = "			'" . str_replace($start_with, "", $func_name) . "' => [";
+			$out[] = "				'cpp-method' => \"" . $func_name . "\",";
 			$out[] = "				'static' => FALSE,";
 			$out[] = "				'return-type' => " . (($output[1][$i] == "void") ? "NULL" : "\"" . $output[1][$i] . "\"") . ",";
 			
@@ -41,20 +91,27 @@ class Fetch
 				$out[] = "				'parameters' => NULL";
 			}
 			else {
-				$out[] = "				'parameters' => [";
-
+				
 				$parameters = explode(",", $output[3][$i]);
-				foreach($parameters as $parameter) {
-
-					$param = explode(" ", ltrim(rtrim($parameter)));
-
-					$out[] = "					[";
-					$out[] = "						'type' => \"" . $param[0] . "\",";
-					$out[] = "						'name' => \"" . str_replace("*", "", $param[1]) . "\",";
-					$out[] = "					],";
+				if(count($parameters) == 1) {
+					$out[] = "				'parameters' => NULL";
 				}
+				else {
+					$out[] = "				'parameters' => [";
 
-				$out[] = "				],";
+					foreach($parameters as $index => $parameter) {
+						if($index == 0) continue;
+
+						$param = explode(" ", ltrim(rtrim($parameter)));
+
+						$out[] = "					[";
+						$out[] = "						'type' => \"" . $param[0] . "\",";
+						$out[] = "						'name' => \"" . str_replace("*", "", $param[1]) . "\",";
+						$out[] = "					],";
+					}
+
+					$out[] = "				],";
+				}
 			}
 
 			$out[] = "			],";
@@ -99,9 +156,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkFlowBox";
-$start_with = "gtk_flow_box_";
-$extends = "GtkContainer";
-$macro = "GTK_FLOW_BOX";
+$widget = "GtkAspectFrame";
+$start_with = "gtk_aspect_frame_";
+$extends = "GtkFrame";
+$macro = "GTK_ASPECT_FRAME";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);

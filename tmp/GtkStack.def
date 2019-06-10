@@ -1,0 +1,45 @@
+
+GtkWidget * gtk_stack_new (void);
+
+void gtk_stack_add_named (GtkStack *stack, GtkWidget *child, gchar *name);
+
+void gtk_stack_add_titled (GtkStack *stack, GtkWidget *child, gchar *name, gchar *title);
+
+GtkWidget * gtk_stack_get_child_by_name (GtkStack *stack, gchar *name);
+
+void gtk_stack_set_visible_child (GtkStack *stack, GtkWidget *child);
+
+GtkWidget * gtk_stack_get_visible_child (GtkStack *stack);
+
+void gtk_stack_set_visible_child_name (GtkStack *stack, gchar *name);
+
+gchar * gtk_stack_get_visible_child_name (GtkStack *stack);
+
+void gtk_stack_set_visible_child_full (GtkStack *stack, gchar *name, GtkStackTransitionType transition);
+
+void gtk_stack_set_homogeneous (GtkStack *stack, gboolean homogeneous);
+
+gboolean gtk_stack_get_homogeneous (GtkStack *stack);
+
+void gtk_stack_set_hhomogeneous (GtkStack *stack, gboolean hhomogeneous);
+
+gboolean gtk_stack_get_hhomogeneous (GtkStack *stack);
+
+void gtk_stack_set_vhomogeneous (GtkStack *stack, gboolean vhomogeneous);
+
+gboolean gtk_stack_get_vhomogeneous (GtkStack *stack);
+
+void gtk_stack_set_transition_duration (GtkStack *stack, guint duration);
+
+guint gtk_stack_get_transition_duration (GtkStack *stack);
+
+void gtk_stack_set_transition_type (GtkStack *stack, GtkStackTransitionType transition);
+
+GtkStackTransitionType gtk_stack_get_transition_type (GtkStack *stack);
+
+gboolean gtk_stack_get_transition_running (GtkStack *stack);
+
+gboolean gtk_stack_get_interpolate_size (GtkStack *stack);
+
+void gtk_stack_set_interpolate_size (GtkStack *stack, gboolean interpolate_size);
+

@@ -1,0 +1,7 @@
+
+GtkWidget * gtk_stack_sidebar_new (void);
+
+void gtk_stack_sidebar_set_stack (GtkStackSidebar *sidebar, GtkStack *stack);
+
+GtkStack * gtk_stack_sidebar_get_stack (GtkStackSidebar *sidebar);
+
