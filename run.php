@@ -4,7 +4,7 @@
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", dirname(__FILE__) . "/src");
 
 // Define output CPP source path
-defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", "/home/scorninpc/Desktop/Bruno/php-gtk3-tests/src");
+defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", "/home/scorninpc/Desktop/Bruno/BUILD_PHP_GTK/php-gtk3/src");
 
 /**
  *
