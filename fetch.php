@@ -154,9 +154,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkCalendar";
-$start_with = "gtk_calendar_";
-$extends = "GtkWidget";
-$macro = "GTK_CALENDAR";
+$widget = "GtkAppChooserButton";
+$start_with = "gtk_app_chooser_button_";
+$extends = "GtkComboBox";
+$macro = "GTK_APP_CHOOSER_BUTTON";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
