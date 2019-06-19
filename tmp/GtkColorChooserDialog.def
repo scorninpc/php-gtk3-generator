@@ -1,0 +1,3 @@
+
+GtkWidget * gtk_color_chooser_dialog_new (gchar *title, GtkWindow *parent);
+

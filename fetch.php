@@ -154,9 +154,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkAppChooserButton";
-$start_with = "gtk_app_chooser_button_";
-$extends = "GtkComboBox";
-$macro = "GTK_APP_CHOOSER_BUTTON";
+$widget = "GtkColorChooserDialog";
+$start_with = "gtk_color_chooser_dialog_";
+$extends = "GtkDialog";
+$macro = "GTK_COLOR_CHOOSER_DIALOG";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
