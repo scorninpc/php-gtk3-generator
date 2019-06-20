@@ -1,0 +1,51 @@
+
+GtkPageSetup * gtk_page_setup_new (void);
+
+GtkPageSetup * gtk_page_setup_copy (GtkPageSetup *other);
+
+GtkPageOrientation gtk_page_setup_get_orientation (GtkPageSetup *setup);
+
+void gtk_page_setup_set_orientation (GtkPageSetup *setup, GtkPageOrientation orientation);
+
+GtkPaperSize * gtk_page_setup_get_paper_size (GtkPageSetup *setup);
+
+void gtk_page_setup_set_paper_size (GtkPageSetup *setup, GtkPaperSize *size);
+
+gdouble gtk_page_setup_get_top_margin (GtkPageSetup *setup, GtkUnit unit);
+
+void gtk_page_setup_set_top_margin (GtkPageSetup *setup, gdouble margin, GtkUnit unit);
+
+gdouble gtk_page_setup_get_bottom_margin (GtkPageSetup *setup, GtkUnit unit);
+
+void gtk_page_setup_set_bottom_margin (GtkPageSetup *setup, gdouble margin, GtkUnit unit);
+
+gdouble gtk_page_setup_get_left_margin (GtkPageSetup *setup, GtkUnit unit);
+
+void gtk_page_setup_set_left_margin (GtkPageSetup *setup, gdouble margin, GtkUnit unit);
+
+gdouble gtk_page_setup_get_right_margin (GtkPageSetup *setup, GtkUnit unit);
+
+void gtk_page_setup_set_right_margin (GtkPageSetup *setup, gdouble margin, GtkUnit unit);
+
+void gtk_page_setup_set_paper_size_and_default_margins (GtkPageSetup *setup, GtkPaperSize *size);
+
+gdouble gtk_page_setup_get_paper_width (GtkPageSetup *setup, GtkUnit unit);
+
+gdouble gtk_page_setup_get_paper_height (GtkPageSetup *setup, GtkUnit unit);
+
+gdouble gtk_page_setup_get_page_width (GtkPageSetup *setup, GtkUnit unit);
+
+gdouble gtk_page_setup_get_page_height (GtkPageSetup *setup, GtkUnit unit);
+
+GtkPageSetup * gtk_page_setup_new_from_file (gchar *file_name, GError **error);
+
+GtkPageSetup * gtk_page_setup_new_from_key_file (GKeyFile *key_file, gchar *group_name, GError **error);
+
+gboolean gtk_page_setup_load_file (GtkPageSetup *setup, char *file_name, GError **error);
+
+gboolean gtk_page_setup_load_key_file (GtkPageSetup *setup, GKeyFile *key_file, gchar *group_name, GError **error);
+
+gboolean gtk_page_setup_to_file (GtkPageSetup *setup, char *file_name, GError **error);
+
+void gtk_page_setup_to_key_file (GtkPageSetup *setup, GKeyFile *key_file, gchar *group_name);
+
