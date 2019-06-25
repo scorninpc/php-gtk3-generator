@@ -154,9 +154,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkPageSetup";
-$start_with = "gtk_page_setup_";
-$extends = "GObject";
-$macro = "GTK_PAGE_SETUP";
+$widget = "GtkInfoBar";
+$start_with = "gtk_info_bar_";
+$extends = "GtkBox";
+$macro = "GTK_INFO_BAR";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);

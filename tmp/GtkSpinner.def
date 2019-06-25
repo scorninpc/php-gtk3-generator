@@ -1,0 +1,7 @@
+
+GtkWidget * gtk_spinner_new (void);
+
+void gtk_spinner_start (GtkSpinner *spinner);
+
+void gtk_spinner_stop (GtkSpinner *spinner);
+
