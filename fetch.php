@@ -154,9 +154,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkProgressBar";
-$start_with = "gtk_progress_bar_";
-$extends = "GtkWidget";
-$macro = "GTK_PROGRESS_BAR";
+$widget = "GtkStyleContext";
+$start_with = "gtk_style_context_";
+$extends = "GObject";
+$macro = "GTK_STYLE_CONTEXT";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
