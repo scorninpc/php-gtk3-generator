@@ -1,0 +1,47 @@
+
+GtkPaperSize * gtk_paper_size_new (gchar *name);
+
+GtkPaperSize * gtk_paper_size_new_from_ppd (gchar *ppd_name, gchar *ppd_display_name, gdouble width, gdouble height);
+
+GtkPaperSize * gtk_paper_size_new_from_ipp (gchar *ipp_name, gdouble width, gdouble height);
+
+GtkPaperSize * gtk_paper_size_new_custom (gchar *name, gchar *display_name, gdouble width, gdouble height, GtkUnit unit);
+
+GtkPaperSize * gtk_paper_size_copy (GtkPaperSize *other);
+
+void gtk_paper_size_free (GtkPaperSize *size);
+
+gboolean gtk_paper_size_is_equal (GtkPaperSize *size1, GtkPaperSize *size2);
+
+GList * gtk_paper_size_get_paper_sizes (gboolean include_custom);
+
+gchar * gtk_paper_size_get_name (GtkPaperSize *size);
+
+gchar * gtk_paper_size_get_display_name (GtkPaperSize *size);
+
+gchar * gtk_paper_size_get_ppd_name (GtkPaperSize *size);
+
+gdouble gtk_paper_size_get_width (GtkPaperSize *size, GtkUnit unit);
+
+gdouble gtk_paper_size_get_height (GtkPaperSize *size, GtkUnit unit);
+
+gboolean gtk_paper_size_is_ipp (GtkPaperSize *size);
+
+gboolean gtk_paper_size_is_custom (GtkPaperSize *size);
+
+void gtk_paper_size_set_size (GtkPaperSize *size, gdouble width, gdouble height, GtkUnit unit);
+
+gdouble gtk_paper_size_get_default_top_margin (GtkPaperSize *size, GtkUnit unit);
+
+gdouble gtk_paper_size_get_default_bottom_margin (GtkPaperSize *size, GtkUnit unit);
+
+gdouble gtk_paper_size_get_default_left_margin (GtkPaperSize *size, GtkUnit unit);
+
+gdouble gtk_paper_size_get_default_right_margin (GtkPaperSize *size, GtkUnit unit);
+
+gchar * gtk_paper_size_get_default (void);
+
+GtkPaperSize * gtk_paper_size_new_from_key_file (GKeyFile *key_file, gchar *group_name, GError **error);
+
+void gtk_paper_size_to_key_file (GtkPaperSize *size, GKeyFile *key_file, gchar *group_name);
+

@@ -1,0 +1,11 @@
+
+GtkWidget * gtk_page_setup_unix_dialog_new (gchar *title, GtkWindow *parent);
+
+void gtk_page_setup_unix_dialog_set_page_setup (GtkPageSetupUnixDialog *dialog, GtkPageSetup *page_setup);
+
+GtkPageSetup * gtk_page_setup_unix_dialog_get_page_setup (GtkPageSetupUnixDialog *dialog);
+
+void gtk_page_setup_unix_dialog_set_print_settings (GtkPageSetupUnixDialog *dialog, GtkPrintSettings *print_settings);
+
+GtkPrintSettings * gtk_page_setup_unix_dialog_get_print_settings (GtkPageSetupUnixDialog *dialog);
+

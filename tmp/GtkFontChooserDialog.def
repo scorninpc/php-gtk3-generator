@@ -1,0 +1,3 @@
+
+GtkWidget * gtk_font_chooser_dialog_new (gchar *title, GtkWindow *parent);
+
