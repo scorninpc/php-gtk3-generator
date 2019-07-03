@@ -1,0 +1,5 @@
+
+GtkWidget * gtk_recent_chooser_dialog_new (gchar *title, GtkWindow *parent, gchar *first_button_text, ...);
+
+GtkWidget * gtk_recent_chooser_dialog_new_for_manager (gchar *title, GtkWindow *parent, GtkRecentManager *manager, gchar *first_button_text, ...);
+

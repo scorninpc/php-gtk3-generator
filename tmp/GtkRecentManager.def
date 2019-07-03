@@ -1,0 +1,71 @@
+
+GtkRecentManager * gtk_recent_manager_new (void);
+
+GtkRecentManager * gtk_recent_manager_get_default (void);
+
+gboolean gtk_recent_manager_add_item (GtkRecentManager *manager, gchar *uri);
+
+gboolean gtk_recent_manager_add_full (GtkRecentManager *manager, gchar *uri, GtkRecentData *recent_data);
+
+gboolean gtk_recent_manager_remove_item (GtkRecentManager *manager, gchar *uri, GError **error);
+
+GtkRecentInfo * gtk_recent_manager_lookup_item (GtkRecentManager *manager, gchar *uri, GError **error);
+
+gboolean gtk_recent_manager_has_item (GtkRecentManager *manager, gchar *uri);
+
+gboolean gtk_recent_manager_move_item (GtkRecentManager *manager, gchar *uri, gchar *new_uri, GError **error);
+
+GList * gtk_recent_manager_get_items (GtkRecentManager *manager);
+
+gint gtk_recent_manager_purge_items (GtkRecentManager *manager, GError **error);
+
+GtkRecentInfo * gtk_recent_info_ref (GtkRecentInfo *info);
+
+void gtk_recent_info_unref (GtkRecentInfo *info);
+
+gchar * gtk_recent_info_get_uri (GtkRecentInfo *info);
+
+gchar * gtk_recent_info_get_display_name (GtkRecentInfo *info);
+
+gchar * gtk_recent_info_get_description (GtkRecentInfo *info);
+
+gchar * gtk_recent_info_get_mime_type (GtkRecentInfo *info);
+
+time_t gtk_recent_info_get_added (GtkRecentInfo *info);
+
+time_t gtk_recent_info_get_modified (GtkRecentInfo *info);
+
+time_t gtk_recent_info_get_visited (GtkRecentInfo *info);
+
+gboolean gtk_recent_info_get_private_hint (GtkRecentInfo *info);
+
+gboolean gtk_recent_info_get_application_info (GtkRecentInfo *info, gchar *app_name, gchar **app_exec, guint *count, time_t *time_);
+
+gchar ** gtk_recent_info_get_applications (GtkRecentInfo *info, gsize *length);
+
+gchar * gtk_recent_info_last_application (GtkRecentInfo *info);
+
+gboolean gtk_recent_info_has_application (GtkRecentInfo *info, gchar *app_name);
+
+GAppInfo * gtk_recent_info_create_app_info (GtkRecentInfo *info, gchar *app_name, GError **error);
+
+gchar ** gtk_recent_info_get_groups (GtkRecentInfo *info, gsize *length);
+
+gboolean gtk_recent_info_has_group (GtkRecentInfo *info, gchar *group_name);
+
+GdkPixbuf * gtk_recent_info_get_icon (GtkRecentInfo *info, gint size);
+
+GIcon * gtk_recent_info_get_gicon (GtkRecentInfo *info);
+
+gchar * gtk_recent_info_get_short_name (GtkRecentInfo *info);
+
+gchar * gtk_recent_info_get_uri_display (GtkRecentInfo *info);
+
+gint gtk_recent_info_get_age (GtkRecentInfo *info);
+
+gboolean gtk_recent_info_is_local (GtkRecentInfo *info);
+
+gboolean gtk_recent_info_exists (GtkRecentInfo *info);
+
+gboolean gtk_recent_info_match (GtkRecentInfo *info_a, GtkRecentInfo *info_b);
+

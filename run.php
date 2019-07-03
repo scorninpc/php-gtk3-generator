@@ -4,7 +4,7 @@
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", dirname(__FILE__) . "/src");
 
 // Define output CPP source path
-defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", "/home/scorninpc/Desktop/Bruno/BUILD_PHP_GTK/php-gtk3/src");
+defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", APPLICATION_PATH . "/../../src");
 
 /**
  *
@@ -146,6 +146,7 @@ class Parse
 
 		// Save file
 		file_put_contents(CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".h", $output);
+		echo CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".h\n";
 	}
 
 	/**
@@ -188,6 +189,7 @@ class Parse
 
 		// Save file
 		file_put_contents(CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".cpp", $output);
+		echo CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".cpp\n";
 	}
 
 	/**
