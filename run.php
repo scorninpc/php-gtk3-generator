@@ -4,7 +4,7 @@
 defined("APPLICATION_PATH") || define("APPLICATION_PATH", dirname(__FILE__) . "/src");
 
 // Define output CPP source path
-defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", APPLICATION_PATH . "/../../src");
+defined("CPP_SRC_PATH") || define("CPP_SRC_PATH", "/home/scorninpc/Desktop/Bruno/BUILD_PHP_GTK/php-gtk3/src");
 
 /**
  *
@@ -146,7 +146,6 @@ class Parse
 
 		// Save file
 		file_put_contents(CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".h", $output);
-		echo CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".h\n";
 	}
 
 	/**
@@ -189,7 +188,6 @@ class Parse
 
 		// Save file
 		file_put_contents(CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".cpp", $output);
-		echo CPP_SRC_PATH . "/" . $definitions['configs']['cpp-object'] . ".cpp\n";
 	}
 
 	/**
@@ -222,6 +220,12 @@ class Parse
 		// Start logic
 		$method .= "\n{\n";
 
+		// ---------------
+		// Verify uninemplemented
+		$comment = "";
+		if(@$method_config['unimplemented']) {
+			$comment = "// ";
+		}
 
 		// ---------------
 		// Loop parameters
@@ -233,29 +237,29 @@ class Parse
 
 				if(@$parameter_definitions['return']) {
 
-					$parameter_string = "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . ";\n\n";
+					$parameter_string = $comment . "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . ";\n\n";
 
 				}
 				else if((substr($parameter_definitions['type'], 0, 3) == "Gtk") ||  (substr($parameter_definitions['type'], 0, 3) == "Gdk")) {
 
 
-					$parameter_string .= "\t" . $parameter_definitions['type'] . " *" . $parameter_definitions['name'] . ";\n";
-					$parameter_string .= "\tif(parameters.size() > " . $index . ") {\n";
-						$parameter_string .= "\t\tPhp::Value object_" . $parameter_definitions['name'] . " = parameters[" . $index . "];\n";
+					$parameter_string .= $comment . "\t" . $parameter_definitions['type'] . " *" . $parameter_definitions['name'] . ";\n";
+					$parameter_string .= $comment . "\tif(parameters.size() > " . $index . ") {\n";
+						$parameter_string .= $comment . "\t\tPhp::Value object_" . $parameter_definitions['name'] . " = parameters[" . $index . "];\n";
 						// $parameter_string .= "\tif (!object_" . $parameter_definitions['name'] . ".instanceOf(\"" . $parameter_definitions['type'] . "\")) throw Php::Exception(\"parameter expect " . $parameter_definitions['type'] . " instance\");\n";
-						$parameter_string .= "\t\t" . $parameter_definitions['type'] . "_ *phpgtk_" . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . "_ *)object_" . $parameter_definitions['name'] . ".implementation();\n";
+						$parameter_string .= $comment . "\t\t" . $parameter_definitions['type'] . "_ *phpgtk_" . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . "_ *)object_" . $parameter_definitions['name'] . ".implementation();\n";
 						
 						if(@$parameter_definitions['nocast_macro']) {
-							$parameter_string .= "\t\t" . $parameter_definitions['name'] . " = phpgtk_" . $parameter_definitions['name'] . "->get_instance();\n";
+							$parameter_string .= $comment . "\t\t" . $parameter_definitions['name'] . " = phpgtk_" . $parameter_definitions['name'] . "->get_instance();\n";
 						}
 						else {
 							if(!isset($parameter_definitions['cast_macro'])) {
 								$parameter_definitions['cast_macro'] = "GTK_WIDGET";
 							}
 							
-							$parameter_string .= "\t\t" . $parameter_definitions['name'] . " = " . $parameter_definitions['cast_macro'] . "(phpgtk_" . $parameter_definitions['name'] . "->get_instance());\n";
+							$parameter_string .= $comment . "\t\t" . $parameter_definitions['name'] . " = " . $parameter_definitions['cast_macro'] . "(phpgtk_" . $parameter_definitions['name'] . "->get_instance());\n";
 						}
-					$parameter_string .= "\t}\n";
+					$parameter_string .= $comment . "\t}\n";
 
 					
 					// $parameter_string .= "\t" . $parameter_definitions['type'] . "_ *" . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . "_ *)object_" . $parameter_definitions['name'] . ".implementation();\n";
@@ -263,47 +267,47 @@ class Parse
 				}
 				else if($parameter_definitions['type'] == "guint") {
 
-					$parameter_string .= "\tguint " . $parameter_definitions['name'] . " = (int)parameters[" . $index . "];\n";
+					$parameter_string .= $comment . "\tguint " . $parameter_definitions['name'] . " = (int)parameters[" . $index . "];\n";
 
 				}
 				else if(substr($parameter_definitions['type'], 0, 5) == "gchar") {
 
 
-					$parameter_string .= "\tstd::string s_" . $parameter_definitions['name'] . " = parameters[" . $index . "];\n";
-					$parameter_string .= "\t" . $parameter_definitions['type'] . "" . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . ")s_" . $parameter_definitions['name'] . ".c_str();\n";
+					$parameter_string .= $comment . "\tstd::string s_" . $parameter_definitions['name'] . " = parameters[" . $index . "];\n";
+					$parameter_string .= $comment . "\t" . $parameter_definitions['type'] . "" . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . ")s_" . $parameter_definitions['name'] . ".c_str();\n";
 
 				}
 				else if(substr($parameter_definitions['type'], 0, 6) == "gfloat") {
 
 
-					$parameter_string .= "\tdouble d_" . $parameter_definitions['name'] . " = parameters[" . $index . "];\n";
-					$parameter_string .= "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . " = (float)d_" . $parameter_definitions['name'] . ";\n";
+					$parameter_string .= $comment . "\tdouble d_" . $parameter_definitions['name'] . " = parameters[" . $index . "];\n";
+					$parameter_string .= $comment . "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . " = (float)d_" . $parameter_definitions['name'] . ";\n";
 
 				}
 				else if($parameter_definitions['type'][0] == "g") {
 
-					$parameter_string .= "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . ")parameters[" . $index . "];\n";
+					$parameter_string .= $comment . "\t" . $parameter_definitions['type'] . " " . $parameter_definitions['name'] . " = (" . $parameter_definitions['type'] . ")parameters[" . $index . "];\n";
 
 				}
 				else if(substr($parameter_definitions['type'], 0, 4) == "enum") {
 
 					$param_type = substr($parameter_definitions['type'], 5);
-					$parameter_string .= "\tint int_" . $parameter_definitions['name'] . " = (int)parameters[" . $index . "];\n";
-					$parameter_string .= "\t" . $param_type . " " . $parameter_definitions['name'] . " = (" . $param_type . ")int_" . $parameter_definitions['name'] . ";\n";
+					$parameter_string .= $comment . "\tint int_" . $parameter_definitions['name'] . " = (int)parameters[" . $index . "];\n";
+					$parameter_string .= $comment . "\t" . $param_type . " " . $parameter_definitions['name'] . " = (" . $param_type . ")int_" . $parameter_definitions['name'] . ";\n";
 
 				}
 				else {
 					
 				}
 
-				$method .= $parameter_string . "\n";
+				$method .= $comment . $parameter_string . "\n";
 			}
 		}
 
 
 		// ---------------
 		// Save returned value
-		$method .= "\t";
+		$method .= $comment . "\t";
 		if(substr($method_config['return-type'], 0, 3) == "Gtk") {
 			$method .= $method_config['return-type'] . " *ret = ";
 		}
@@ -377,20 +381,24 @@ class Parse
 		// Return value
 		if(substr($method_config['return-type'], 0, 3) == "Gtk") {
 
-			$method .= "\t" . $method_config['return-type'] . "_ *return_parsed = new " . $method_config['return-type'] . "_();\n";
-	        $method .= "\treturn_parsed->set_instance((gpointer *)ret);\n";
-	        $method .= "\treturn Php::Object(\"" . $method_config['return-type'] . "\", return_parsed);\n";
+			$method .= $comment . "\t" . $method_config['return-type'] . "_ *return_parsed = new " . $method_config['return-type'] . "_();\n";
+	        $method .= $comment . "\treturn_parsed->set_instance((gpointer *)ret);\n";
+	        $method .= $comment . "\treturn Php::Object(\"" . $method_config['return-type'] . "\", return_parsed);\n";
 
 		}
 		else if($method_config['return-type'] != NULL) {
-			$method .= "\treturn ret;\n";
+			$method .= $comment . "\treturn ret;\n";
 		}
 
-        
+		// ---------------
+		// Verify uninemplemented
+		if(@$method_config['unimplemented']) {
+			$method .= "\t throw Php::Exception(\"" . $definitions['configs']['name'] . "::" . $method_name . " not implemented\");";
+		}
+
 		// End logic
 		$method .= "}";
-
-
+		
 		// Return CPP code of method
 		return $method;
 	}

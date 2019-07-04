@@ -21,7 +21,7 @@ class Fetch
 			$def_content = "\n";
 
 			// ----
-			$url = "https://developer.gnome.org/gtk3/3.20/" . $widget . ".html";
+			$url = "https://developer.gnome.org/gtksourceview/3.20/" . $widget . ".html";
 			$html = file_get_contents($url);
 
 			// ----
@@ -154,9 +154,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkMenuButton";
-$start_with = "gtk_menu_button_";
-$extends = "GtkToggleButton";
-$macro = "GTK_MENU_BUTTON";
+$widget = "GtkSourceView";
+$start_with = "gtk_source_view_";
+$extends = "GtkTextView";
+$macro = "GTK_SOURCE_VIEW";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
