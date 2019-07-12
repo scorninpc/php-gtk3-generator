@@ -1,0 +1,37 @@
+
+GladeApp * glade_app_new (void);
+
+GType glade_pointer_mode_get_type (void);
+
+GladeApp * glade_app_get (void);
+
+void glade_app_set_window (GtkWidget *window);
+
+GtkWidget * glade_app_get_window (void);
+
+GladeClipboard * glade_app_get_clipboard (void);
+
+void glade_app_add_project (GladeProject *project);
+
+void glade_app_remove_project (GladeProject *project);
+
+GList * glade_app_get_projects (void);
+
+GKeyFile * glade_app_get_config (void);
+
+gboolean glade_app_is_project_loaded (gchar *project_path);
+
+GladeProject * glade_app_get_project_by_path (gchar *project_path);
+
+gint glade_app_config_save (void);
+
+void glade_app_set_accel_group (GtkAccelGroup *accel_group);
+
+gchar * glade_app_get_catalogs_dir (void);
+
+gchar * glade_app_get_modules_dir (void);
+
+gchar * glade_app_get_pixmaps_dir (void);
+
+gchar * glade_app_get_locale_dir (void);
+

@@ -22,6 +22,7 @@ class Fetch
 
 			// ----
 			$url = "https://developer.gnome.org/gtksourceview/3.20/" . $widget . ".html";
+			$url = "https://developer.gnome.org/gladeui/stable/" . $widget . ".html";
 			$html = file_get_contents($url);
 
 			// ----
@@ -154,9 +155,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkSourceView";
-$start_with = "gtk_source_view_";
-$extends = "GtkTextView";
-$macro = "GTK_SOURCE_VIEW";
+$widget = "GladeApp";
+$start_with = "glade_app_";
+$extends = "GObject";
+$macro = "GLADE_APP";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
