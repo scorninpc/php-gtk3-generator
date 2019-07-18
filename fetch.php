@@ -21,8 +21,13 @@ class Fetch
 			$def_content = "\n";
 
 			// ----
+<<<<<<< HEAD
 			// $url = "https://developer.gnome.org/gtksourceview/3.20/" . $widget . ".html";
 			$url = "https://developer.gnome.org/gtk3/stable/" . $widget . ".html";
+=======
+			$url = "https://developer.gnome.org/gtksourceview/3.20/" . $widget . ".html";
+			$url = "https://developer.gnome.org/gladeui/stable/" . $widget . ".html";
+>>>>>>> be9664682988e4627b6118cb2b93fabbf4049aae
 			$html = file_get_contents($url);
 
 			// ----
@@ -155,9 +160,16 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
+<<<<<<< HEAD
 $widget = "GtkFontButton";
 $start_with = "gtk_font_button_";
 $extends = "GtkButton";
 $macro = "GTK_COLOR_FONT";
+=======
+$widget = "GladeApp";
+$start_with = "glade_app_";
+$extends = "GObject";
+$macro = "GLADE_APP";
+>>>>>>> be9664682988e4627b6118cb2b93fabbf4049aae
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
