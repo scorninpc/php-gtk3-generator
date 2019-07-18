@@ -24,7 +24,7 @@ class Fetch
 			$url = "https://developer.gnome.org/gtksourceview/3.20/" . $widget . ".html";
 			$url = "https://developer.gnome.org/gladeui/stable/" . $widget . ".html";
 			$url = "https://developer.gnome.org/gtk3/stable/" . $widget . ".html";
-			
+
 			$html = file_get_contents($url);
 
 			// ----
@@ -159,9 +159,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkFontButton";
-$start_with = "gtk_font_button_";
-$extends = "GtkButton";
-$macro = "GTK_COLOR_FONT";
+$widget = "GtkEntryCompletion";
+$start_with = "gtk_entry_completion_";
+$extends = "GObject";
+$macro = "GTK_ENTRY_COMPLETION";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);
