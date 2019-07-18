@@ -23,6 +23,7 @@ class Fetch
 			// ----
 			$url = "https://developer.gnome.org/gtksourceview/3.20/" . $widget . ".html";
 			$url = "https://developer.gnome.org/gladeui/stable/" . $widget . ".html";
+			$url = "https://developer.gnome.org/gtk3/stable/" . $widget . ".html";
 			$html = file_get_contents($url);
 
 			// ----
@@ -83,6 +84,8 @@ class Fetch
 			$out[] = "			'" . str_replace($start_with, "", $func_name) . "' => [";
 			$out[] = "				'cpp-method' => \"" . $func_name . "\",";
 			$out[] = "				'static' => FALSE,";
+			$out[] = "				'unimplemented' => FALSE,";
+			$out[] = "				'deprecated' => \"\",";
 			$out[] = "				'return-type' => " . (($output[1][$i] == "void") ? "NULL" : "\"" . $output[1][$i] . "\"") . ",";
 			
 			//
@@ -155,9 +158,9 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GladeApp";
-$start_with = "glade_app_";
+$widget = "GtkWidget";
+$start_with = "gtk_widget_";
 $extends = "GObject";
-$macro = "GLADE_APP";
+$macro = "GTK_WIDGET";
 
 $notebook = new Fetch($widget, $start_with, $extends, $macro);

@@ -223,7 +223,7 @@ class Parse
 		// ---------------
 		// Verify uninemplemented
 		$comment = "";
-		if(@$method_config['unimplemented']) {
+		if((@$method_config['unimplemented']) || (strlen($method_config['deprecated']) > 0)) {
 			$comment = "// ";
 		}
 
@@ -393,7 +393,10 @@ class Parse
 		// ---------------
 		// Verify uninemplemented
 		if(@$method_config['unimplemented']) {
-			$method .= "\t throw Php::Exception(\"" . $definitions['configs']['name'] . "::" . $method_name . " not implemented\");";
+			$method .= "\t throw Php::Exception(\"" . $definitions['configs']['name'] . "::" . $method_name . " not implemented\");\n";
+		}
+		else if(strlen($method_config['deprecated']) > 0) {
+			$method .= "\t Php::deprecated << \"" . $definitions['configs']['name'] . "::" . $method_name . "  is deprecated on Gtk " . $method_config['deprecated'] . "\";\n";
 		}
 
 		// End logic
