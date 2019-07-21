@@ -159,7 +159,7 @@ class Fetch
 }
 
 // $file = APPLICATION_PATH . "/../defs/" . $argv[1] . ".php";
-$widget = "GtkEntryCompletion";
+$widget = "GtkNotebook";
 $start_with = "gtk_entry_completion_";
 $extends = "GObject";
 $macro = "GTK_ENTRY_COMPLETION";
